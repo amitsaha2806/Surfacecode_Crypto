@@ -296,9 +296,9 @@ ibm_machine = QuantumArchitecture(
 			Q=628
 			D=8186112*(2**64)
 		elif (N==256):
-			T=1.41*(2**128)
-			Q=6681
-			D=1.57*(2**128)
+			T=8186112*(2**128)
+			Q=628
+			D=2099248*(2**128)
 		return self.surface_code_cost(T,D,Q)
 	
 	def grover_zuc_optimize(self,Zuc_optimize_length):
@@ -309,9 +309,9 @@ ibm_machine = QuantumArchitecture(
 			Q=685
 			D=724375*(2**64)
 		elif (N==256):
-			T=1.41*(2**128)
-			Q=6681
-			D=1.57*(2**128)
+			T=637987*(2**128)
+			Q=685
+			D=800635*(2**128)
 		return self.surface_code_cost(T,D,Q)
 
 
