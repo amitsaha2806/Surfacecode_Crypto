@@ -16,7 +16,7 @@ class QuantumArchitecture:
 		distance_error_constant=0.03,
 		distill_cycles=2.0*3.0*1.25,
 		qubit_error=0.001,
-		threshold_error=0.001,
+		threshold_error=0.316,
 		state_injection_error=0.02,
 		time_mem=0.5,
 		max_fact=1000,
@@ -301,18 +301,7 @@ ibm_machine = QuantumArchitecture(
 			D=2099248*(2**128)
 		return self.surface_code_cost(T,D,Q)
 	
-	def grover_zuc_optimize(self,Zuc_optimize_length):
-		N=int(Zuc_optimize_length)
-		#from grassl et al.
-		if (N==128):
-			T=578627*(2**64)
-			Q=685
-			D=724375*(2**64)
-		elif (N==256):
-			T=637987*(2**128)
-			Q=685
-			D=800635*(2**128)
-		return self.surface_code_cost(T,D,Q)
+	
 
 
 		
@@ -342,6 +331,19 @@ ibm_machine = QuantumArchitecture(
 			}
 		return self.surface_code_cost(T[P],D[P],Q[P])
 	
+	def grover_zuc_optimize(self,Zuc_optimize_length):
+		N=int(Zuc_optimize_length)
+		#from grassl et al.
+		if (N==128):
+			T=165316*(2**64)
+			Q=685
+			D=409743*(2**64)
+		elif (N==256):
+			T=182788*(2**128)
+			Q=685
+			D=442737*(2**128)
+		return self.surface_code_cost(T,D,Q)
+	
 
 # ... (rest of your code remains the same)
 
@@ -354,36 +356,36 @@ def runTests():
         10.0,
         0.03,
         2.0 * 3.0 * 1.25,
-        0.01,
+        0.001,
         0.0316,
-        0.05,
+        0.02,
         0.5,
         1000
     )
     # Corrected keys with underscores
-    result_generic = test.algorithm_cost("Generic", {"t_gates": 20, "depth": 30, "qubits": 50})
-    print("Any algorithm:")
-    print(result_generic)
+    #result_generic = test.algorithm_cost("Generic", {"t_gates": 20, "depth": 30, "qubits": 50})
+    #print("Any algorithm:")
+    #print(result_generic)
     
     # Corrected keys with underscores
-    results_grover_generic = test.algorithm_cost("Grover-generic", {
-        "oracle_t_gates": 20,
-        "oracle_depth": 30,
-        "qubits": 50,
-        "search_space": 1000000000
-    })
-    print("Any Grover:")
-    print(results_grover_generic)
+    #results_grover_generic = test.algorithm_cost("Grover-generic", {
+    #    "oracle_t_gates": 20,
+    #    "oracle_depth": 30,
+    #    "qubits": 50,
+    #    "search_space": 1000000000
+    #})
+    #print("Any Grover:")
+    #print(results_grover_generic)
     
     # Corrected key to "AES_length"
-    results_grover_AES = test.algorithm_cost("Grover-AES", {"AES_length": 192})
-    print("Grover AES:")
-    print(results_grover_AES)
+    #results_grover_AES = test.algorithm_cost("Grover-AES", {"AES_length": 192})
+    #print("Grover AES:")
+    #print(results_grover_AES)
 
 	# Corrected key to "Zuc_length"
-    results_grover_Zuc = test.algorithm_cost("Grover-Zuc", {"Zuc_length": 128})
-    print("Grover Zuc for 128:")
-    print(results_grover_Zuc)
+    #results_grover_Zuc = test.algorithm_cost("Grover-Zuc", {"Zuc_length": 128})
+    #print("Grover Zuc for 128:")
+    #print(results_grover_Zuc)
 
 	# Corrected key to "Zuc_optimize_length"
     results_grover_Zuc_optimize = test.algorithm_cost("Grover-Zuc-optimize", {"Zuc_optimize_length": 128})
@@ -391,9 +393,9 @@ def runTests():
     print(results_grover_Zuc_optimize)
 
 	# Corrected key to "Zuc_length"
-    results_grover_Zuc_higher = test.algorithm_cost("Grover-Zuc", {"Zuc_length": 256})
-    print("Grover Zuc for 256:")
-    print(results_grover_Zuc_higher)
+    #results_grover_Zuc_higher = test.algorithm_cost("Grover-Zuc", {"Zuc_length": 256})
+    #print("Grover Zuc for 256:")
+    #print(results_grover_Zuc_higher)
 
 	# Corrected key to "Zuc_optimize_length"
     results_grover_Zuc_optimize_higher = test.algorithm_cost("Grover-Zuc-optimize", {"Zuc_optimize_length": 256})
@@ -402,18 +404,18 @@ def runTests():
 
 	
     # Corrected key to "bit_length"
-    results_shor_zalka = test.algorithm_cost("Shor-Zalka", {"bit_length": 2048})
-    print("Shor with Zalka")
-    print(results_shor_zalka)
+    #results_shor_zalka = test.algorithm_cost("Shor-Zalka", {"bit_length": 2048})
+    #print("Shor with Zalka")
+    #print(results_shor_zalka)
     
     # Corrected key to "bit_length"
-    results_shor_markov = test.algorithm_cost("Shor-Markov", {"bit_length": 2048})
-    print("Shor with Markov")
-    print(results_shor_markov)
+    #results_shor_markov = test.algorithm_cost("Shor-Markov", {"bit_length": 2048})
+    #print("Shor with Markov")
+    #print(results_shor_markov)
     
-    # Corrected key to "prime_length"
-    results_ECDLP = test.algorithm_cost("ECDLP", {"prime_length": 384})
-    print("ECDLP:")
-    print(results_ECDLP)
+    #Corrected key to "prime_length"
+    #results_ECDLP = test.algorithm_cost("ECDLP", {"prime_length": 384})
+    #print("ECDLP:")
+    #print(results_ECDLP)
 
 runTests()
